@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Escola Barbosa - Fotos e Cursos</title>
+  <style>
+    /* Reset e base */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding-bottom: 100px; /* espaço para o rodapé fixo */
+      background: #e4f0f6;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #01497c;
+      color: white;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    header img {
+      height: 80px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+    header img:hover {
+      transform: scale(1.05);
+    }
+    header span {
+      font-size: 26px;
+      font-weight: 700;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    header p {
+      width: 100%;
+      text-align: center;
+      font-style: italic;
+      margin-top: 5px;
+      color: #cfd8dc;
+    }
+
+    nav {
+      background-color: #012a4a;
+      padding: 12px 0;
+      text-align: center;
+      box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05em;
+      transition: color 0.3s ease;
+      padding: 5px 8px;
+      border-radius: 5px;
+    }
+    nav a:hover {
+      background: #0288d1;
+      color: #fff;
+      box-shadow: 0 0 10px #0288d1;
+    }
+
+    section {
+      padding: 25px 15px;
+      max-width: 960px;
+      margin: 30px auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    section:hover {
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    h2 {
+      color: #01497c;
+      margin-bottom: 15px;
+      border-bottom: 3px solid #0288d1;
+      padding-bottom: 5px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    ul {
+      list-style: inside square;
+      margin-left: 20px;
+    }
+
+    /* Galeria */
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    .galeria img {
+      cursor: pointer;
+      width: 220px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      object-fit: cover;
+      height: 140px;
+    }
+    .galeria img:hover {
+      transform: scale(1.07);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+    }
+
+    /* Modal (Lightbox) */
+    #modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+      animation: fadeIn 0.3s ease forwards;
+    }
+    #modal img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      animation: zoomIn 0.3s ease forwards;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.7);}
+      to {transform: scale(1);}
+    }
+
+    footer {
+      background-color: #012a4a;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 0.9em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .instagram-icon {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      gap: 6px;
+    }
+    .instagram-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+      transition: fill 0.3s ease;
+    }
+    .instagram-icon:hover svg {
+      fill: #e1306c;
+    }
+    .instagram-text {
+      font-size: 1em;
+    }
+
+    /* Responsividade */
+    @media(max-width: 650px){
+      .galeria img {
+        width: 90vw;
+        height: auto;
+      }
+      header {
+        flex-direction: column;
+        gap: 8px;
+      }
+      nav a {
+        margin: 8px 6px;
+        font-size: 1em;
+      }
+      section {
+        margin: 20px 10px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="logooo.png" alt="Logo do Colégio" />
+  <span>Colégio Estadual Barbosa Ferraz</span>
+  <p>Educação para o futuro</p>
+</header>
+
+<nav>
+  <a href="index.html">Início</a>
+  <a href="ensino-medio.html">Ensino Médio</a>
+  <a href="ds.html">Técnico em DS</a>
+  <a href="docente.html">Formação de Docente</a>
+  <a href="estetica.html">Técnico em Estética</a>
+  <a href="enfermagem.html">Técnico em Enfermagem</a>
+  <a href="administracao.html">Técnico em Administração</a>
+  <a href="projetos.html">Projetos</a>
+</nav>
+
+<section>
+  <h2>Ensino Médio</h2>
+  <p>O Ensino Médio do Colégio Barbosa Ferraz proporciona uma formação completa, focando no desenvolvimento acadêmico e pessoal dos alunos para os desafios do futuro.</p>
+</section>
+
+<section>
+  <h2>Técnico em DS</h2>
+  <p>O curso Técnico em DS oferece formação prática e teórica para atuação na área de tecnologia da informação, com foco em programação, desenvolvimento web, mobile e banco de dados.</p>
+</section>
+
+<section>
+  <h2>Formação de Docente</h2>
+  <p>Curso voltado à formação de professores da educação infantil e anos iniciais, desenvolvendo habilidades pedagógicas, planejamento e práticas educativas fundamentais.</p>
+</section>
+
+<section>
+  <h2>Técnico em Estética</h2>
+  <p>Formação profissional na área de estética corporal e facial, capacitando os alunos com conhecimentos sobre anatomia, cosmetologia e técnicas de tratamento.</p>
+</section>
+
+<section>
+  <h2>Técnico em Enfermagem</h2>
+  <p>Curso que prepara os estudantes para atuar na área da saúde, com foco em cuidados clínicos, primeiros socorros, administração de medicamentos e ética profissional.</p>
+</section>
+
+<section>
+  <h2>Técnico em Administração</h2>
+  <p>Capacitação em gestão organizacional, planejamento, rotinas administrativas, empreendedorismo e finanças, com foco no mercado de trabalho atual.</p>
+</section>
+
+<section>
+  <h2>Projetos</h2>
+  <p>Projetos desenvolvidos no colégio incluem:</p>
+  <ul>
+    <li>Robótica</li>
+    <li>Altas Habilidades</li>
+    <li>Treino de Basquete</li>
+    <li>Treino de Vôlei</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Fotos do Colégio</h2>
+
+  <h3>Colégio</h3>
+  <div class="galeria">
+    <img src="colegiooo.jpg" alt="Colégio 1" onclick="openModal(this)" />
+    <img src="colegioooo.jpeg" alt="Colégio 2" onclick="openModal(this)" />
+  </div>
+
+  <h3>Professores</h3>
+  <div class="galeria">
+    <img src="professores 3.jpg" alt="Professor 1" onclick="openModal(this)" />
+    <img src="professores2.jpg" alt="Professor 2" onclick="openModal(this)" />
+  </div>
+
+  <h3>Alunos</h3>
+  <div class="galeria">
+    <img src="alunos 3.jpg" alt="Aluno 1" onclick="openModal(this)" />
+    <img src="alunos2.jpg" alt="Aluno 2" onclick="openModal(this)" />
+  </div>
+</section>
+
+<!-- Modal para abrir a imagem -->
+<div id="modal" onclick="closeModal()">
+  <img id="modal-img" src="" alt="Imagem ampliada" />
+</div>
+
+<footer>
+  <p>&copy; 2025 Escola Barbosa - Todos os direitos reservados
+    <a href="https://www.instagram.com/colegiobarbosaferrazivp/" target="_blank" rel="noopener" class="instagram-icon" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm7.5 2a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6z"/>
+      </svg>
+      <span class="instagram-text">Instagram</span>
+    </a>
+  </p>
+</footer>
+
+<script>
+  // Função para abrir o modal com a imagem clicada
+  function openModal(img) {
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    modal.style.display = 'flex';
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+  }
+  // Fechar modal ao clicar fora da imagem
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
